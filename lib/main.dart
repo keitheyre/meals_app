@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilter),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilter, _filters),
 //        "/category-meals": (ctx) => CategoryMealsScreen(),
       },
       //Fallback routes for pushNamed
