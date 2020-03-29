@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   //Add Meal to favorite list using mealID
-  void toggleFavorite(String mealID) {
+  void _toggleFavorite(String mealID) {
     final existingIndex =
         _favoriteMeals.indexWhere((meal) => meal.id == mealID);
 
@@ -59,6 +59,11 @@ class _MyAppState extends State<MyApp> {
         _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealID));
       });
     }
+  }
+
+  //Return true if ANY of the meals in favoriteMeals matches the mealID given
+  bool _isMealFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
   }
 
   List<Meal> _availableMeals = DUMMY_MEALS;
@@ -91,7 +96,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilter, _filters),
 //        "/category-meals": (ctx) => CategoryMealsScreen(),
       },
